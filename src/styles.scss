@@ -195,16 +195,11 @@ body {
         border: none;
         color: #434343;
         font-weight: bold;
-        opacity: 0.3;
 
         & > img {
           margin-right: 1rem;
           width: 1.6rem;
         }
-      }
-
-      .active {
-        opacity: 1;
       }
     }
   }
