@@ -14,6 +14,10 @@ const Grid = ({ pictures, onPictureClick }: Props) => {
           key={picture.url}
           picture={picture}
           onClick={onPictureClick}
+          positionTransition={{
+            type: 'tween',
+            ease: 'easeInOut',
+          }}
         />
       ))}
     </div>
