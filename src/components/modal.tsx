@@ -26,6 +26,11 @@ const Modal: FC<Props> = ({ children, onClose }) => {
         animate={{
           y: 0,
         }}
+        transition={{
+          type: 'spring',
+          damping: 30,
+          stiffness: 300,
+        }}
       >
         {children}
       </motion.div>
