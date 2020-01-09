@@ -1,8 +1,25 @@
 import React, { FC } from 'react'
-import { motion } from 'framer-motion'
+import { motion, Variants } from 'framer-motion'
 
 type Props = {
   onClose: () => void
+}
+
+const overlayVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1 },
+}
+
+const panelVariants: Variants = {
+  hidden: { y: 1000 },
+  visible: {
+    y: 0,
+    transition: {
+      type: 'spring',
+      damping: 30,
+      stiffness: 300,
+    },
+  },
 }
 
 const Modal: FC<Props> = ({ children, onClose }) => {
@@ -10,27 +27,16 @@ const Modal: FC<Props> = ({ children, onClose }) => {
     <>
       <motion.div
         className="overlay"
-        initial={{
-          opacity: 0,
-        }}
-        animate={{
-          opacity: 1,
-        }}
+        initial="hidden"
+        animate="visible"
         onClick={() => onClose()}
+        variants={overlayVariants}
       />
       <motion.div
         className="modal-panel"
-        initial={{
-          y: 1000,
-        }}
-        animate={{
-          y: 0,
-        }}
-        transition={{
-          type: 'spring',
-          damping: 30,
-          stiffness: 300,
-        }}
+        initial="hidden"
+        animate="visible"
+        variants={panelVariants}
       >
         {children}
       </motion.div>
