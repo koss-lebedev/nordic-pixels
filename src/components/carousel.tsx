@@ -44,7 +44,7 @@ const Carousel = ({ picture }: Props) => {
     <div>
       <h3>Choose your format</h3>
       <div className="carousel">
-        <div className="carousel-item" key={index}>
+        <div className="carousel-item">
           <Option.Component src={picture.url} />
         </div>
         <button
