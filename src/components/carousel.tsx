@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Variants, motion, AnimatePresence } from 'framer-motion'
 import Formats from './formats'
 
 type Props = {
@@ -30,6 +31,21 @@ const options = [
   },
 ]
 
+const variants: Variants = {
+  enter: {
+    opacity: 0,
+    x: 500,
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+  },
+  exit: {
+    opacity: 0,
+    x: -500,
+  },
+}
+
 const Carousel = ({ picture }: Props) => {
   const [index, setIndex] = useState(0)
 
@@ -44,9 +60,21 @@ const Carousel = ({ picture }: Props) => {
     <div>
       <h3>Choose your format</h3>
       <div className="carousel">
-        <div className="carousel-item">
-          <Option.Component src={picture.url} />
-        </div>
+        <AnimatePresence initial={false}>
+          <motion.div
+            className="carousel-item"
+            variants={variants}
+            initial="enter"
+            animate="visible"
+            exit="exit"
+            key={index}
+            transition={{
+              type: 'tween',
+            }}
+          >
+            <Option.Component src={picture.url} />
+          </motion.div>
+        </AnimatePresence>
         <button
           className="carousel-arrow carousel-arrow--left"
           onClick={() => paginate(-1)}

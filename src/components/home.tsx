@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { AnimatePresence } from 'framer-motion'
 import sortBy from 'lodash.sortby'
 import Header from './header'
 import Grid from './grid'
@@ -16,12 +17,14 @@ const Home = () => {
         pictures={sortBy(pictures, order)}
         onPictureClick={setSelected}
       />
-      {selected && (
-        <Details
-          onClose={() => setSelected(null)}
-          picture={selected}
-        />
-      )}
+      <AnimatePresence>
+        {selected && (
+          <Details
+            onClose={() => setSelected(null)}
+            picture={selected}
+          />
+        )}
+      </AnimatePresence>
     </div>
   )
 }

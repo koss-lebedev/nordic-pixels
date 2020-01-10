@@ -29,6 +29,7 @@ const Modal: FC<Props> = ({ children, onClose }) => {
         className="overlay"
         initial="hidden"
         animate="visible"
+        exit="hidden"
         onClick={() => onClose()}
         variants={overlayVariants}
       />
@@ -36,6 +37,7 @@ const Modal: FC<Props> = ({ children, onClose }) => {
         className="modal-panel"
         initial="hidden"
         animate="visible"
+        exit="hidden"
         variants={panelVariants}
       >
         {children}
