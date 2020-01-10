@@ -32,26 +32,26 @@ const options = [
 ]
 
 const variants: Variants = {
-  enter: {
+  enter: (direction: number) => ({
     opacity: 0,
-    x: 500,
-  },
+    x: direction < 0 ? -500 : 500,
+  }),
   visible: {
     opacity: 1,
     x: 0,
   },
-  exit: {
+  exit: (direction: number) => ({
     opacity: 0,
-    x: -500,
-  },
+    x: direction < 0 ? 500 : -500,
+  }),
 }
 
 const Carousel = ({ picture }: Props) => {
-  const [index, setIndex] = useState(0)
+  const [[index, direction], setIndex] = useState([0, 0])
 
   const paginate = (newDirection: number) => {
     const newIndex = wrap(index + newDirection, options.length)
-    setIndex(newIndex)
+    setIndex([newIndex, newDirection])
   }
 
   const Option = options[index]
@@ -60,7 +60,7 @@ const Carousel = ({ picture }: Props) => {
     <div>
       <h3>Choose your format</h3>
       <div className="carousel">
-        <AnimatePresence initial={false}>
+        <AnimatePresence initial={false} custom={direction}>
           <motion.div
             className="carousel-item"
             variants={variants}
@@ -68,6 +68,7 @@ const Carousel = ({ picture }: Props) => {
             animate="visible"
             exit="exit"
             key={index}
+            custom={direction}
             transition={{
               type: 'tween',
             }}
