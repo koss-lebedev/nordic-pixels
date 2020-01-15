@@ -1,5 +1,10 @@
 import React, { useState } from 'react'
-import { Variants, motion, AnimatePresence } from 'framer-motion'
+import {
+  Variants,
+  motion,
+  AnimatePresence,
+  useAnimation,
+} from 'framer-motion'
 import Formats from './formats'
 
 type Props = {
@@ -48,10 +53,16 @@ const variants: Variants = {
 
 const Carousel = ({ picture }: Props) => {
   const [[index, direction], setIndex] = useState([0, 0])
+  const controls = useAnimation()
+  controls.setDefaultTransition({
+    type: 'tween',
+  })
 
   const paginate = (newDirection: number) => {
     const newIndex = wrap(index + newDirection, options.length)
     setIndex([newIndex, newDirection])
+    controls.set({ y: 30 })
+    controls.start({ y: 0 })
   }
 
   const Option = options[index]
@@ -86,7 +97,9 @@ const Carousel = ({ picture }: Props) => {
         />
       </div>
       <div className="carousel-label">
-        <span>{options[index].label}</span>
+        <motion.div animate={controls}>
+          {options[index].label}
+        </motion.div>
       </div>
     </div>
   )
