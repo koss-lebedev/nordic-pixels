@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { motion, Variants } from 'framer-motion'
+import { motion, Variants, PanInfo } from 'framer-motion'
 
 type Props = {
   onClose: () => void
@@ -23,6 +23,12 @@ const panelVariants: Variants = {
 }
 
 const Modal: FC<Props> = ({ children, onClose }) => {
+  const handleDragEnd = (event: any, info: PanInfo) => {
+    if (info.offset.y > 200) {
+      onClose()
+    }
+  }
+
   return (
     <>
       <motion.div
@@ -39,8 +45,26 @@ const Modal: FC<Props> = ({ children, onClose }) => {
         animate="visible"
         exit="hidden"
         variants={panelVariants}
+        drag="y"
+        dragConstraints={{
+          top: 0,
+          bottom: 0,
+        }}
+        dragElastic={0.8}
+        onDragEnd={handleDragEnd}
       >
-        {children}
+        <div className="handle" />
+        <motion.div
+          className="modal-body"
+          drag="y"
+          dragConstraints={{
+            top: 0,
+            bottom: 0,
+          }}
+          dragElastic={0}
+        >
+          {children}
+        </motion.div>
       </motion.div>
     </>
   )
