@@ -1,5 +1,6 @@
 import React from 'react'
 import { motion, Variants } from 'framer-motion'
+import SlideToConfirm from './slide-to-confirm'
 
 type Props = {
   onComplete: () => void
@@ -49,9 +50,10 @@ const Review = ({ onComplete }: Props) => {
           ))}
         </motion.ul>
       </div>
-      <button className="button" onClick={() => onComplete()}>
-        Place order
-      </button>
+      <SlideToConfirm
+        onConfirm={onComplete}
+        label="slide to purchase"
+      />
     </div>
   )
 }

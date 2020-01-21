@@ -164,6 +164,36 @@ body {
   }
 }
 
+.slide-to-confirm {
+  height: 6rem;
+  width: 33rem;
+  border-radius: 6rem;
+  margin: 2rem auto 4rem;
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: white;
+  background: #3b96fa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  .toggle {
+    width: 5rem;
+    height: 5rem;
+    position: absolute;
+    left: 1rem;
+    background: #363673;
+    border-radius: 5rem;
+    cursor: pointer;
+    font-size: 2rem;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
 // SCREENS
 
 .home-screen {
