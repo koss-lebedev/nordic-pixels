@@ -1,6 +1,6 @@
 import React from 'react'
 import Thumbnail from './thumbnail'
-import { Variants } from 'framer-motion'
+import { Variants, useReducedMotion } from 'framer-motion'
 
 type Props = {
   pictures: readonly Picture[]
@@ -18,6 +18,8 @@ const variants: Variants = {
 }
 
 const Grid = ({ pictures, onPictureClick }: Props) => {
+  const isReduced = useReducedMotion()
+
   return (
     <div className="thumbnails">
       {pictures.map((picture, index) => (
@@ -25,10 +27,14 @@ const Grid = ({ pictures, onPictureClick }: Props) => {
           key={picture.url}
           picture={picture}
           onClick={onPictureClick}
-          positionTransition={{
-            type: 'tween',
-            ease: 'easeInOut',
-          }}
+          positionTransition={
+            isReduced
+              ? false
+              : {
+                  type: 'tween',
+                  ease: 'easeInOut',
+                }
+          }
           variants={variants}
           initial="hidden"
           animate="visible"
