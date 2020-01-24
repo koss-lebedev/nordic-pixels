@@ -1,5 +1,11 @@
 import React from 'react'
-import { motion, useAnimation, PanInfo } from 'framer-motion'
+import {
+  motion,
+  useAnimation,
+  PanInfo,
+  useMotionValue,
+  useTransform,
+} from 'framer-motion'
 
 type Props = {
   label: string
@@ -10,6 +16,13 @@ const RIGHT_OFFSET = 260
 
 const SlideToConfirm = ({ label, onConfirm }: Props) => {
   const controls = useAnimation()
+  const offset = useMotionValue(0)
+  const opacity = useTransform(offset, [0, RIGHT_OFFSET], [1, 0])
+  const background = useTransform(
+    offset,
+    [0, RIGHT_OFFSET],
+    ['#3b96fa', '#96ea64']
+  )
 
   const handlePan = (event: any, info: PanInfo) => {
     const x = info.offset.x
@@ -29,17 +42,20 @@ const SlideToConfirm = ({ label, onConfirm }: Props) => {
   }
 
   return (
-    <div className="slide-to-confirm">
-      <span>{label}</span>
+    <motion.div className="slide-to-confirm" style={{ background }}>
+      <motion.span style={{ opacity }}>{label}</motion.span>
       <motion.div
         className="toggle"
         animate={controls}
         onPan={handlePan}
         onPanEnd={handlePanEnd}
+        style={{
+          x: offset,
+        }}
       >
         &#187;
       </motion.div>
-    </div>
+    </motion.div>
   )
 }
 
