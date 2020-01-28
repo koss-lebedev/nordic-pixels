@@ -1,24 +1,21 @@
 import React from 'react'
+import styled from 'styled-components'
 import { motion } from 'framer-motion'
+
+const Box = styled.div`
+  width: 10rem;
+  height: 10rem;
+  background: #09f;
+`
+
+const MotionBox = motion.custom(Box)
 
 const Sandbox = () => {
   return (
     <section className="sandbox-screen">
-      <motion.div
-        className="box"
+      <MotionBox
         animate={{
-          x: 300,
-          y: 300,
-        }}
-        transition={{
-          x: {
-            type: 'tween',
-            duration: 1,
-          },
-          y: {
-            type: 'tween',
-            duration: 2,
-          },
+          x: 200,
         }}
       />
     </section>

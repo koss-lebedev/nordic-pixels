@@ -1,6 +1,6 @@
 import React from 'react'
 import Thumbnail from './thumbnail'
-import { Variants, useReducedMotion } from 'framer-motion'
+import { Variants, useReducedMotion, motion } from 'framer-motion'
 
 type Props = {
   pictures: readonly Picture[]
@@ -17,13 +17,15 @@ const variants: Variants = {
   }),
 }
 
+const MotionThumbnail = motion.custom(Thumbnail)
+
 const Grid = ({ pictures, onPictureClick }: Props) => {
   const isReduced = useReducedMotion()
 
   return (
     <div className="thumbnails">
       {pictures.map((picture, index) => (
-        <Thumbnail
+        <MotionThumbnail
           key={picture.url}
           picture={picture}
           onClick={onPictureClick}
