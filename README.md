@@ -1,6 +1,6 @@
 ## NordicPixels
 
-Starter application for [framer-motion course](https://octocourses.com/courses/framer-motion).
+Starter application for [framer-motion course](https://konstantinlebedev.com/framer-motion/).
 
 ### Getting started
 
