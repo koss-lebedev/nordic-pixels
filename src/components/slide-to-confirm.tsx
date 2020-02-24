@@ -7,21 +7,21 @@ type Props = {
 }
 
 const RIGHT_OFFSET = 260
-const MARGIN_OF_ERROR = 20
 
 const SlideToConfirm = ({ label, onConfirm }: Props) => {
   const controls = useAnimation()
 
   const handlePan = (event: any, info: PanInfo) => {
-    if (info.offset.x > 0 && info.offset.x <= RIGHT_OFFSET) {
+    const offset = info.offset.x
+    if (offset > 0) {
       controls.set({
-        x: info.offset.x,
+        x: offset < RIGHT_OFFSET ? offset : RIGHT_OFFSET,
       })
     }
   }
 
   const handlePanEnd = (event: any, info: PanInfo) => {
-    if (info.offset.x > RIGHT_OFFSET - MARGIN_OF_ERROR) {
+    if (info.offset.x >= RIGHT_OFFSET) {
       onConfirm()
     } else {
       controls.start({ x: 0 })
