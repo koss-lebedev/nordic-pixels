@@ -12,10 +12,10 @@ const SlideToConfirm = ({ label, onConfirm }: Props) => {
   const controls = useAnimation()
 
   const handlePan = (event: any, info: PanInfo) => {
-    const offset = info.offset.x
-    if (offset > 0) {
+    const x = info.offset.x
+    if (x > 0) {
       controls.set({
-        x: offset < RIGHT_OFFSET ? offset : RIGHT_OFFSET,
+        x: x < RIGHT_OFFSET ? x : RIGHT_OFFSET,
       })
     }
   }
