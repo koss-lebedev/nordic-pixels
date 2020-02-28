@@ -16,9 +16,9 @@ html {
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+    'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: #f7f8fb;
@@ -173,7 +173,7 @@ body {
         font-weight: bold;
         font-size: 2rem;
 
-        &>span {
+        & > span {
           color: #3b96fa;
         }
       }
@@ -197,7 +197,7 @@ body {
         font-weight: bold;
         opacity: 0.3;
 
-        &>img {
+        & > img {
           margin-right: 1rem;
           width: 1.6rem;
         }
@@ -207,7 +207,6 @@ body {
         opacity: 1;
       }
     }
-
   }
 
   .thumbnails {
@@ -306,5 +305,6 @@ body {
     width: 10rem;
     height: 10rem;
     background: #09f;
+    margin-bottom: 1rem;
   }
 }
