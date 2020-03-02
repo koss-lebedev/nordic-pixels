@@ -6,9 +6,9 @@ const Sandbox = () => {
 
   return (
     <section className="sandbox-screen">
-      <button onClick={() => setExpanded(!expanded)}>Toggle</button>
       <motion.div
         className="box"
+        onClick={() => setExpanded(!expanded)}
         animate={{
           width: expanded ? 'calc(100vw - 4rem)' : 100,
         }}
