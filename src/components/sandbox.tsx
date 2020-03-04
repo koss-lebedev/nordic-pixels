@@ -6,7 +6,6 @@ const Sandbox = () => {
     <section className="sandbox-screen">
       <motion.div
         className="box"
-        onClick={() => setExpanded(!expanded)}
         animate={{
           x: 300,
           y: 300,
